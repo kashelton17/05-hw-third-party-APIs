@@ -21,17 +21,17 @@ input[type='text'],textarea {
   border-bottom: 10px solid black;
 }
 .past {
-  background-color: #d3d3d3;
+  background-color: #d3d3d3de;
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #f3a19d;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #b0dfb0;
   color: white;
 }
 .description {
@@ -59,20 +59,27 @@ input[type='text'],textarea {
 
 .hour {
   background: transparent;
-  color: #000000;
+  color: rgb(75, 74, 74);
+  font-family:fantasy;
+  font-size: 110%
   
 }
 
 .saveBtn {
-  border-left: 1px solid black;
+  border: dashed 0.1px darkgrey;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
-  color: white;
+  background-color: #aae8f6;
+  color: rgb(75, 74, 74);
+  font-weight: bold;
+  font-size:x-large;
 }
 
 .saveBtn:hover {
   font-size: 20px;
-  transition: all 0.3s ease-in-out;
-  background:#0295b6
+  transition: all 0.4s ease-in-out;
+  
+}
+.saveBtn:active {
+  background:#3fd2f3
 }
