@@ -33,29 +33,39 @@ var today = moment().format('dddd MMM Do, YYYY')
 console.log(today)
 $(timeEl).text(today)
 
-//changing color of list item depending on if the hour is past present or future
+// getting the current hour of the day and making sure every hour of the day is the same string length to compare to event hour
 var currentHour = moment().format('ha')
-console.log(currentHour)
+if (currentHour.length === 3) {
+    currentHour = '0'+ currentHour
+} else if (currentHour === '12pm') {
+    currentHour = '00pm'
+}
+
+// setting variable for event hour and making all the events strings the same length
 var eventHour = ''
 for (var i=0; i < hourEl.length; i++) {
     eventHour = hourEl[i].textContent
-    console.log(eventHour.substring(eventHour.length-2))
+    if (eventHour.length === 3) {
+        eventHour = '0'+ eventHour
+    } else if (eventHour === '12pm') {
+        eventHour = '00pm'
+    }
+
+    // going through all the outcomes to make sure future events are green, past are grey and current is red
     if (eventHour === currentHour) {
         $(hourEl[i]).parent().addClass('present')
         $(hourEl[i]).closest('input').addClass('present')
-    } else if( (eventHour[0,1] < currentHour[0,1]) && (eventHour.substring(eventHour.length-2) === currentHour.substring(currentHour.length-2)) ) {
+    } else if( (eventHour.substring(0,2) > currentHour.substring(0,2)) && (eventHour.substring(eventHour.length-2) === currentHour.substring(currentHour.length-2)) ) {
         $(hourEl[i]).parent('li').addClass('future')
     } else if((eventHour.substring(eventHour.length-2) === 'pm') && (currentHour.substring(currentHour.length-2) === 'am')) {
         $(hourEl[i]).parent('li').addClass('future')
     } else {
         $(hourEl[i]).parent('li').addClass('past')
-        $(hourEl[i]).siblings('span').addClass('past')
-        console.log(eventHour[0,1])
-
+        console.log(eventHour.substring(0,2))
     }
 }
 
-// adding input to calendar when pressing the add button as long as there is content being added
+// adding input to calendar when pressing the add button as long as there is content being added for each individual save button
 
 $(saveBtn1).on('click', function(event) {
     var eventValue = $(event.target).siblings('input').val()
